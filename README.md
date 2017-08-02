@@ -1,13 +1,13 @@
 # Tranu
 
-## Cross platform rendering library for python
+## Cross platform multimedia library for python
 
 ### About:
-Develop minimal games/applications with a library that abstracts multiple rendering systems to a simple wrapper.
+Develop minimal games/applications with a library that abstracts multiple media systems to a simple wrapper.
 
 Tranu was designed since the start with both the web and desktop in mind, with mobile as a future possibility.
 
-Tranu is structured to allow you to wrap multiple rendering libraries, no matter if they are all for desktop or web and choose the best one for your needs.
+Tranu is structured to allow you to wrap multiple libraries, no matter if they are all for desktop or web and choose the best one for your needs.
 
 ### Targets:
 - Web via Transcrypt + Canvas
