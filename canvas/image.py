@@ -27,4 +27,4 @@ class TImage(tranu.shared.image.SharedImage):
 
     def __init__(self):
         super().__init__()
-        self._impl = None
+        #self._impl = None
