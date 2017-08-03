@@ -6,7 +6,7 @@ class TImage(tranu.shared.image.SharedImage):
         window._context.drawImage(self._impl, x, y)
 
     def draw_src(self, window, sx, sy, sw, sh, tx, ty, tw, th):
-        window.context.drawImage(self._impl, sx, sy, sw, sh, tx, ty, tw, th)
+        window._context.drawImage(self._impl, sx, sy, sw, sh, tx, ty, tw, th)
 
     @property
     def width(self):

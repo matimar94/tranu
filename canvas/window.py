@@ -1,10 +1,20 @@
 import tranu.shared.window
 import tranu.canvas.preloader
+#import tranu.canvas.mousecodes
 
 class TWindow(tranu.shared.window.SharedWindow):
 
-    def update(self, dt):
-        pass
+    def draw_rect(self, x, y, w, h):
+        self._context.rect(x, y, w, h)
+        self._context.stroke()
+
+    def draw_circle(self, x, y, r):
+        self._context.beginPath()
+        self._context.arc(x, y, r, 0, 2 * Math.PI)
+        self._context.stroke()
+
+    #def update(self, dt):
+        #pass
 
     def create_preloader(self):
         return tranu.canvas.preloader.TPreloader()
@@ -22,12 +32,46 @@ class TWindow(tranu.shared.window.SharedWindow):
 
         return canvas
 
+    def _key_pressed(self, ev):
+        if self.get_key_state(ev.code) == False:
+            self.key_pressed(ev.code)
+
+    def _key_released(self, ev):
+        self.key_released(ev.code)
+
+    def _mouse_pressed(self, ev):
+        #btn = (tranu.mousecodes.LEFT, tranu.mousecodes.MIDDLE, tranu.mousecodes.RIGHT)[ev.button]
+        x, y = self._fix_mouse(ev)
+
+        self.mouse_pressed(ev.button, x, y)
+
+    def _mouse_released(self, ev):
+        #btn = (tranu.mousecodes.LEFT, tranu.mousecodes.MIDDLE, tranu.mousecodes.RIGHT)[ev.button]
+        x, y = self._fix_mouse(ev)
+
+        self.mouse_released(ev.button, x, y)
+
+
     @property
     def context(self):
         return self._context
 
+    def _fix_mouse(self, evt):
+        rect = self._wind.getBoundingClientRect()
+
+        return evt.clientX - rect.left, evt.clientY - rect.top
+
+
     def start(self):
         self._interval = setInterval(self._loop, 1000.0 / 60)
+
+        window.addEventListener('keydown', self._key_pressed, False)
+        window.addEventListener('keyup', self._key_released, False)
+
+        self._wind.addEventListener('mousedown', self._mouse_pressed, False)
+        self._wind.addEventListener('mouseup', self._mouse_released, False)
+
+        self._wind.addEventListener("mousemove", lambda ev: self.set_mouse_pos(*self._fix_mouse(ev)))
 
     def __init__(self, width, height):
         super().__init__(width, height)

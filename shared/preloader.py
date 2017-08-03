@@ -10,13 +10,13 @@ class SharedPreloader():
             self._loadfunc()
 
     def _load_image(self, path):
-        img = tranu.image.Image()
+        img = tranu.image.TImage()
         img.load(path)
 
         return img
 
     def _load_sound(self, path):
-        snd = tranu.sound.Sound()
+        snd = tranu.sound.TSound()
         snd.load(path)
 
         return snd
