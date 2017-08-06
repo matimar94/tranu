@@ -15,6 +15,7 @@ elif tranu.config.tranu_backend in tranu.config.TRANU_NATIVE:
         from tranu.tpysdl2.window import TWindow
     elif tranu.config.get_tranu_backend() == tranu.config.TRANU_PYGLET_BACKEND:
         from tranu.tpyglet.window import TWindow
+
     try:
         __pragma__ ('noskip')
     except:

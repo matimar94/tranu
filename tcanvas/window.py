@@ -1,5 +1,4 @@
 import tranu.shared.window
-#import tranu.preloader
 
 
 class TWindow(tranu.shared.window.SharedWindow):
@@ -78,3 +77,5 @@ class TWindow(tranu.shared.window.SharedWindow):
         #self._wind = __new__(PIXI.Application(800, 600))
         self._wind =  self._create_canvas(width, height) #__new__(PIXI.Applicatio)
         self._context = self._wind.getContext("2d")
+
+        self._context.imageSmoothingEnabled = False
