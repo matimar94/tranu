@@ -1,6 +1,11 @@
 import tranu.shared.preloader
+import tranu.preloader
 
 class SharedWindow():
+
+    @property
+    def preloader(self):
+        return self._preloader
 
     def draw_rect(self, x, y, w, h):
         raise NotImplementedError("TARGET BACKEND DOESN'T IMPLEMENT RECTS")
@@ -38,18 +43,20 @@ class SharedWindow():
     def draw(self):
         raise NotImplementedError("TARGET BACKEND DOESN'T IMPLEMENT DRAW")
 
-    def _loop(self):
-        self.update(0.016)
-        self.draw()
+    def run(self):
+        pass
 
     def start(self):
         raise NotImplementedError("TARGET BACKEND DOESN'T IMPLEMENT START")
 
-    def preload(self, preloader):
+    def preload(self):
         pass
 
     def create_preloader(self):
-        raise NotImplementedError("PRELOADER NOT IMPLEMENTED FOR TARGET BACKEND")
+        return tranu.preloader.TPreloader()
+
+    def begin(self):
+        self.preload()
 
     def __init__(self, width, height):
         self.width = width
@@ -62,4 +69,4 @@ class SharedWindow():
         self._mouse_x = 0
         self._mouse_y = 0
 
-        self.preload( self._preloader )
+        #self.preload( self._preloader )

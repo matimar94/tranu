@@ -3,7 +3,7 @@ import tranu.config
 
 if tranu.config.get_tranu_backend() in tranu.config.TRANU_WEB:
     from org.transcrypt.stubs.browser import __pragma__
-    from tranu.canvas.mousecodes import *
+    from tranu.tcanvas.mousecodes import *
 elif tranu.config.tranu_backend in tranu.config.TRANU_NATIVE:
     # This horrible desktop-web-pragma trick has to disappear soon
     try:
@@ -12,7 +12,9 @@ elif tranu.config.tranu_backend in tranu.config.TRANU_NATIVE:
         pass
 
     if tranu.config.get_tranu_backend() == tranu.config.TRANU_PYSDL2_BACKEND:
-        from tranu.pysdl2.mousecodes import *
+        from tranu.tpysdl2.mousecodes import *
+    elif tranu.config.get_tranu_backend() == tranu.config.TRANU_PYGLET_BACKEND:
+        from tranu.tpyglet.mousecodes import *
     try:
         __pragma__ ('noskip')
     except:
