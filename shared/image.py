@@ -7,6 +7,9 @@ class SharedImage():
     def draw_src(self, window, sx, sy, sw, sh, tx, ty, tw, th):
         raise NotImplementedError("Define draw_src for image")
 
+    def draw_ex(self, window, x, y, scale_x=1, scale_y=1, rotation=0, origin_x=0.5, origin_y=0.5, texture_rect=None):
+        raise NotImplementedError("Define draw_ex for image")
+
     @property
     def width(self):
         raise NotImplementedError("Define width property for image")
