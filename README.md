@@ -11,13 +11,13 @@ Tranu is structured to allow you to wrap multiple libraries, no matter if they a
 
 ### Targets:
 - Web via Transcrypt + Canvas
-- Desktop via PySDL2
+- Desktop via Pyglet
+- PySDL2 (Not implemented, but might be a good candidate)
 
 ### Not included
-- Mobile target (although PySDL2 + p4a should help)
+- Mobile target (although PySDL2 + p4a should be possible)
 
 ## Also check this other multimedia/game libraries
-- *pyglet*
 - pyopengl
 - moderngl
 - *pygame*
@@ -26,5 +26,6 @@ Tranu is structured to allow you to wrap multiple libraries, no matter if they a
 - kivy
 
 ### Credits:
+- Pyglet
 - SDL2 and PySDL2
 - Transcrypt
