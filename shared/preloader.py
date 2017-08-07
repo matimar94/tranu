@@ -22,8 +22,8 @@ class SharedPreloader():
 
         return snd
 
-    def _load_font(self, path, sysfont=True):
-        fon = tranu.font.TFont()
+    def _load_font(self, path, size, sysfont=True):
+        fon = tranu.font.TFont(size)
         fon.load(path, sysfont)
 
         return fon
@@ -42,7 +42,7 @@ class SharedPreloader():
             self._sounds[snd[0]] = self._load_sound(snd[1])
 
         for fon in self._fonts.items():
-            self._fonts[fon[0]] = self._load_font(fon[1][0], fon[1][1])
+            self._fonts[fon[0]] = self._load_font(fon[1][0], fon[1][1], fon[1][2])
 
 
     def add_image(self, name, image_path):
@@ -51,8 +51,8 @@ class SharedPreloader():
     def add_sound(self, name, sound_path):
         self._sounds[name] = sound_path
 
-    def add_font(self, name, font_path, sysfont=True):
-        self._fonts[name] = (font_path, sysfont)
+    def add_font(self, name, font_path, font_size, sysfont=True):
+        self._fonts[name] = (font_path, font_size, sysfont)
 
     def get_image(self, name):
         return self._images[name]
@@ -69,4 +69,4 @@ class SharedPreloader():
         self._fonts = {}
         self._types = [ "image", "sound" ]
 
-        self._resources = (self._images, self._sounds)
+        self._resources = (self._images, self._sounds, self._fonts)
