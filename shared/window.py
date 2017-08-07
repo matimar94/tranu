@@ -1,4 +1,3 @@
-#import tranu.shared.preloader
 import tranu.preloader
 
 class SharedWindow():

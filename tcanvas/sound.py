@@ -2,7 +2,8 @@ import tranu.shared.sound
 
 class TSound(tranu.shared.sound.SharedSound):
 
-    def play(self):
+    def play(self, volume=1.0):
+        self._impl.volume(volume)
         self._impl.play()
 
     def pause(self):
@@ -13,7 +14,7 @@ class TSound(tranu.shared.sound.SharedSound):
 
     @property
     def duration(self):
-        return NotImplementedError("Define duration for Sound")
+        return self._impl.duration()
 
     def load(self, path, onloadfunc=None):
         if onloadfunc is not None:
