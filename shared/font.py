@@ -16,6 +16,6 @@ class SharedFont():
     def load(self, path, sysfont=True):
         raise NotImplementedError
 
-    def draw(self, window, text, x, y):
+    def draw(self, window, text, x, y, color):
         raise NotImplementedError
 

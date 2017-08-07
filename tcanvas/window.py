@@ -3,6 +3,14 @@ import tranu.shared.window
 
 class TWindow(tranu.shared.window.SharedWindow):
 
+    def _draw(self):
+        self._context.save()
+        self._context.fillStyle="black"
+        self._context.fillRect(0, 0, self.width, self.height)
+        #self._context.clearRect(0, 0, self.width, self.height)
+        self._context.restore()
+        self.draw()
+
     def draw_rect(self, x, y, w, h):
         self._context.rect(x, y, w, h)
         self._context.stroke()
@@ -58,7 +66,7 @@ class TWindow(tranu.shared.window.SharedWindow):
 
     def _loop(self):
         self.update(1.0/60)
-        self.draw()
+        self._draw()
 
     def start(self):
         window.addEventListener('keydown', self._key_pressed, False)

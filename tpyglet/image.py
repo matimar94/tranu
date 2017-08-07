@@ -16,19 +16,17 @@ class TImage(tranu.shared.image.SharedImage):
 
         sy = self.height - sh - sy
 
-        #pox = self._impl.anchor_x
-        #poy = self._impl.anchor_y
-
-        #self._impl.anchor_x = origin_x
-        #self._impl.anchor_y = origin_y
         reg = self._impl.get_region(sx, sy, sw, sh)
-        reg.anchor_x = origin_x * sw
-        reg.anchor_y = -origin_y * sh
-        self._sprite._set_texture( reg ) # We update position (expensive) next line.
-        self._sprite.update(x, window.height - y - th, 0, scale_x=tw/sw, scale_y=th/sh)
+
+        self._sprite._set_texture( reg )
+
+        self._sprite.image.anchor_x = origin_x*self._sprite.image.width
+        self._sprite.image.anchor_y = origin_y*self._sprite.image.height
+
+        self._sprite.update(x, window.height - y, rotation, scale_x=scale_x, scale_y=scale_y)
+
         self._sprite.draw()
-        #self._impl.anchor_x = pox
-        #self._impl.anchor_y = poy
+
 
     def draw_src(self, window, sx, sy, sw, sh, tx, ty, tw, th):
         #tex = self._impl.tex_coords

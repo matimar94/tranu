@@ -4,6 +4,10 @@ import pyglet
 
 class TWindow(tranu.shared.window.SharedWindow):
 
+    def _draw(self):
+        self._wind.clear()
+        self.draw()
+
     def draw_rect(self, x, y, w, h):
         pass
 
@@ -35,6 +39,8 @@ class TWindow(tranu.shared.window.SharedWindow):
         self._wind.on_mouse_press = self._mouse_pressed
         self._wind.on_mouse_release = self._mouse_released
 
+        self._wind.on_draw = self._draw
+
         pyglet.clock.schedule_interval(self.update, 1.0 / 60)
 
     def run(self):
@@ -44,4 +50,4 @@ class TWindow(tranu.shared.window.SharedWindow):
         super().__init__(width, height)
 
         self._wind = pyglet.window.Window(width, height)
-        self._wind.on_draw = self.draw
+        #self._wind.on_draw = self.draw
