@@ -15,7 +15,7 @@ class TWindow(tranu.shared.window.SharedWindow):
         pass
 
     def _key_pressed(self, code, modif):
-        if self.get_key_state(code):
+        if self.get_key_state(code) == False:
             self.key_pressed(code)
 
     def _key_released(self, code, modif):
@@ -38,6 +38,9 @@ class TWindow(tranu.shared.window.SharedWindow):
 
         self._wind.on_mouse_press = self._mouse_pressed
         self._wind.on_mouse_release = self._mouse_released
+
+        self._wind.on_mouse_drag = lambda x,y,dx,dy,buttons,modifiers : self.set_mouse_pos(x, self.height-y)
+        self._wind.on_mouse_motion = lambda x, y, dx, dy: self.set_mouse_pos(x, self.height-y)
 
         self._wind.on_draw = self._draw
 

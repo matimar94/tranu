@@ -1,6 +1,6 @@
 import tranu.shared.image
 
-_DEGTORAD = 3.1416/180
+#_DEGTORAD = 3.1416/180
 
 class TImage(tranu.shared.image.SharedImage):
 
@@ -11,14 +11,15 @@ class TImage(tranu.shared.image.SharedImage):
         window._context.drawImage(self._impl, sx, sy, sw, sh, tx, ty, tw, th)
 
     def draw_ex(self, window, x, y, scale_x=1, scale_y=1, rotation=0, origin_x=0.5, origin_y=0.5, texture_rect=None):
-        if texture_rect:
+        print(x, y, scale_x, scale_y, rotation, origin_x, origin_y, texture_rect)
+        if texture_rect is not None:
             sx, sy, sw, sh = texture_rect
         else:
             sx, sy, sw, sh = 0, 0, self._impl.width, self._impl.height
 
         window._context.save()
         window._context.translate(x, y)
-        window._context.rotate(rotation * _DEGTORAD)
+        window._context.rotate(rotation) #* _DEGTORAD)
         window._context.drawImage(self._impl, sx, sy, sw, sh, -(sw*scale_x *origin_x), -(sh*scale_y *origin_y), sw*scale_x, sh*scale_y)
         window._context.restore()
 

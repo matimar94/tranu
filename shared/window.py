@@ -11,6 +11,9 @@ class SharedWindow():
     def get_key_state(self, key):
         return self._keys.get(key, False)
 
+    def get_mouse_state(self, button):
+        return self._mouse[button]
+
     def key_pressed(self, key):
         self._keys[key] = True
 

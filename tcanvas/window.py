@@ -55,6 +55,7 @@ class TWindow(tranu.shared.window.SharedWindow):
 
         self.mouse_released(ev.button, x, y)
 
+
     @property
     def context(self):
         return self._context

@@ -1,5 +1,8 @@
 import tranu.shared.image
 import pyglet
+from math import pi
+
+_RADTODEG = 180/pi
 
 class TImage(tranu.shared.image.SharedImage):
 
@@ -17,13 +20,14 @@ class TImage(tranu.shared.image.SharedImage):
         sy = self.height - sh - sy
 
         reg = self._impl.get_region(sx, sy, sw, sh)
+        rot = round(rotation*_RADTODEG, 1)
 
         self._sprite._set_texture( reg )
 
         self._sprite.image.anchor_x = origin_x*self._sprite.image.width
         self._sprite.image.anchor_y = origin_y*self._sprite.image.height
 
-        self._sprite.update(x, window.height - y, rotation, scale_x=scale_x, scale_y=scale_y)
+        self._sprite.update(x, window.height - y, rotation*_RADTODEG, scale_x=scale_x, scale_y=scale_y)
 
         self._sprite.draw()
 
